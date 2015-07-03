@@ -1,41 +1,54 @@
-# A fresh look at batch-resizing images: use command line
+# App Icon Resizer
 
-If you deal with images, sooner or later you will want to automate the repeating process of saving different sizes from one source image. If you own Adobe Photoshop and do not save too many output sizes, Photoshop **actions** are probably  quite enough for your needs. However, keeping a Photoshop action up to date is very painful. Change a source folder, and you're screwed.
+If you have to maintain an iOS / Android app and re-generate app icons in different resolutions all the time,
+If your designer likes to give you a vectorial asset a does not generate proper assets from it.
+Well this can take care of that.
 
-On my wallpapers website, [www.vladstudio.com](http://www.vladstudio.com), I generate more than 300 JPG files for each wallpaper! I want my art to reach as many devices as possible, which means I need to publish my wallpapers in as many sizes as I can support. On the other hand, I do not want to spend the rest of my life resizing my artworks - I'd rather draw new ones!
+This is a quick and dirty hack of an existing image magic script I found in GH.
+Now it will resize a source image into all the sizes listed in a file.
 
-Long ago, I used Photoshop actions to save multiple sizes from a source file, but it quickly became a nightmare to maintain. Photoshop provides more powerful tool - **scripting language** (it's not the same as "actions", though the concept is similar). When writing a script, you use a programming language to tell Photoshop what to do (compare it with actions, where Photoshop records what you do with mouse and keyboard). However it's not easy to learn at all. Also, I wanted to completely remove Photoshop from process. 
+Sizes are described as a list of coma separated integers. Sizes are expressed in px. (not pt)
 
-The solution I found is [ImageMagick](http://www.imagemagick.org/) - a command-line image manipulation program, available for [Windows, Mac and Linux](http://www.imagemagick.org/script/binary-releases.php). Unless you are server administrator, you probably never thought of resizing images using command line. However, after switching to command line, I never looked back at Photoshop for batch resizing. 
+Install Python and ImageMagick from mac-ports or whatever you like.
 
-Using command line is:
+ex of use case :
 
-* Easy to expand - adding new sizes takes only one line of code; 
-* Easy to maintain - changing folders is as easy as changing one variable;
-* Portable - I can save images on server, not only on my main computer.
+![alt tag](use_case.png)
 
-If you neved worked with command line before, it all might look scary at first. However, with a bit of patience, you will find that it's actually very powerful tool. 
 
-Below is the bash script I wrote, simplified for more universal usage. It takes the following parameters (from you or from default values):
+then (macOS)
+```
+open .
+```
 
-* set of output sizes;
-* source file
-* destination path (path must include % symbol, which will be replaced by output size, f.e. "800x600")
-* optional signature image.
+Voila !
 
-Then it resizes source image into every output size, applying a signature. For better understanding, please look throught the comments in source code.
 
-The script requires:
 
-* [imagemagick](http://www.imagemagick.org/script/binary-releases.php) - to install, follow instructions for your OS. 
-* python - I'm sure your PC already has it installed!
+## licencing
 
-Tested in Ubuntu and Mac OS X. How to use: 
+Original licencing unclear. Added MIT :
 
-* save **resize.sh** to any folder on your computer.
-* (optionally) edit the file and set default values for variables.
-* open Terminal, navigate to this folder, and execute the following command: `bash resize.sh`
-* follow instructions, sit back and enjoy!
+The MIT License (MIT)
 
+Copyright © 2015 www.vladstudio.com / weavee.net
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 
